@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from './../usuario.service';
 
 @Component({
   selector: 'app-usuario-form',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usuario-form.component.css']
 })
 export class UsuarioFormComponent implements OnInit {
+  
+  usuarios : any = []; 
 
-  constructor() { }
+  constructor(private usuarioService : UsuarioService) { 
+    this.usuarios = this.usuarioService.getAll();
+  }
 
   ngOnInit(): void {
   }

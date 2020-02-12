@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
   xxx:number = 10;
-  nome = "Fábio";
+  nome = "  ";
 
 
   mostrar(){

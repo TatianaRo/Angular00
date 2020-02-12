@@ -1,12 +1,14 @@
 <p>Hello World</p>
 <app-primeiro></app-primeiro>
 
+
+
+<div class="form-group">
+     
+    <label for="nome">Nome</label>
+
+    <input type="text" class="form-control" [(ngModel)] ="nome" (keyup)="show()">
+   
+</div>
+
 <app-usuario-form></app-usuario-form>
-
-<input type="button" [value]="xxx" class="btn-success" >
-
-<input type="text" class="form-control" (keyup)="mostrar()" (blur)="show()" #texto>
-
-<input type="text" class="form-control" [(ngModel)] ="nome" (keyup)="show()">
-
-<input type="button" (click)="alterar()" value="Alterar nome">
