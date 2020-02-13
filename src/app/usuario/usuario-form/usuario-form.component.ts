@@ -10,9 +10,15 @@ export class UsuarioFormComponent implements OnInit {
 
   usuarios: any = [];
   pokemons: any = [];
+  pokemonSelecionado : any = [];
+  
   employee: any = [];
-  offset: number = 0;
 
+  offset: number = 0;
+  color = 'yellow';
+
+  textoBotao = 'Meu Botão';
+  isHabilitar = true;
 
 
 
@@ -40,6 +46,17 @@ export class UsuarioFormComponent implements OnInit {
 
   }
 
+  SelecionarPokemon(url){
+     this.usuarioService.getOnePokemon(url).subscribe(
+      (success) => {
+        this.pokemonSelecionado = success;
+        console.log(this.pokemonSelecionado);
+      }
+     )
+  }
+
+  
+
   proximaPagina() {
     this.offset += 20;
 
@@ -53,7 +70,14 @@ export class UsuarioFormComponent implements OnInit {
     );
   }
 
-
+  habilitar() {
+   this.isHabilitar = !this.isHabilitar;
+   this.color = this.isHabilitar ? 'red' : 'pink';
+  }
+  
+  getColor(){
+    return this.color;
+  }
 
   ngOnInit(): void {
   }

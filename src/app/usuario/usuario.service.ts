@@ -28,4 +28,8 @@ export class UsuarioService {
   getAllEmployees(){
     return this.http.get('http://dummy.restapiexample.com/api/v1/employees');
   }
+
+  getOnePokemon(url){
+    return this.http.get(url);
+  }
 }
