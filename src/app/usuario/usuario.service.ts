@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
+
+ 
 
   getAll(){
     return [
@@ -16,5 +19,13 @@ export class UsuarioService {
       {id: 5, primeironome : 'Cesar', sobrenome: 'Dias', apelido :'rolar'},
     ];
 
+  }
+
+  getAllPokemons(offset){
+    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=&offset='+ offset);
+  }
+
+  getAllEmployees(){
+    return this.http.get('http://dummy.restapiexample.com/api/v1/employees');
   }
 }
