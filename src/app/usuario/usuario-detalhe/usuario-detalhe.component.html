@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <tr>
-            <td>{{ pokemonDetalhe.name }}</td>
+            <td>{{ pokemonDetalhe.name | dataPipe }} </td>
             <td> <img [src] = "pokemonDetalhe.sprites?.front_default" alt=""> </td>
             
         </tr>

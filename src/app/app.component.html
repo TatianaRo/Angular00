@@ -1,14 +1,8 @@
-<p>Hello World</p>
-<app-primeiro></app-primeiro>
+
+<app-menu></app-menu>
 
 
-
-<div class="form-group">
-     
-    <label for="nome">Nome</label>
-
-    <input type="text" class="form-control" [(ngModel)] ="nome" (keyup)="show()">
-   
-</div>
-
-<app-usuario-form></app-usuario-form>
+<!-- <app-usuario-form></app-usuario-form> -->
+<div class="container">
+ <router-outlet></router-outlet>
+ </div>div>
