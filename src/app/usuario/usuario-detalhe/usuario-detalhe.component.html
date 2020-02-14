@@ -9,19 +9,17 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Slot</th>
             <th scope="col">Name</th>
-            <th scope="col">URL</th>
+            <th scope="col">Imagem</th>
             
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let u of pokemonDetalhe.abilities">
-            <td>{{ u.slot }}</td>
-            <td> {{ u.ability.name }} </td>
-            <td>{{ u.ability.url }}</td>
+        <tr>
+            <td>{{ pokemonDetalhe.name }}</td>
+            <td> <img [src] = "pokemonDetalhe.sprites?.front_default" alt=""> </td>
             
-          </tr>
+        </tr>
           
         </tbody>
       </table>

@@ -10,11 +10,13 @@ export class UsuarioFormComponent implements OnInit {
 
   usuarios: any = [];
   pokemons: any = [];
-  pokemonSelecionado : any = [];
+  pokemonSelecionado : any;
   
   employee: any = [];
 
   offset: number = 0;
+  limit : number = 10;
+
   color = 'yellow';
 
   textoBotao = 'Meu Botão';
@@ -25,7 +27,7 @@ export class UsuarioFormComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) {
     this.usuarios = this.usuarioService.getAll();
 
-    this.usuarioService.getAllPokemons(this.offset).subscribe(
+    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
       (success) => {
         console.log(success)
         this.pokemons = success;
@@ -60,7 +62,7 @@ export class UsuarioFormComponent implements OnInit {
   proximaPagina() {
     this.offset += 20;
 
-    this.usuarioService.getAllPokemons(this.offset).subscribe(
+    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
       (success) => {
         console.log(success)
         this.pokemons = success;
@@ -68,6 +70,20 @@ export class UsuarioFormComponent implements OnInit {
       (error) => { console.log(error) }
 
     );
+  }
+
+  trocarLimit(value){
+    this.limit = value;
+
+    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
+      (success) => {
+        console.log(success)
+        this.pokemons = success;
+      },
+      (error) => { console.log(error) }
+
+    );
+    
   }
 
   habilitar() {
