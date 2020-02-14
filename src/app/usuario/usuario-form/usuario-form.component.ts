@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './../usuario.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-usuario-form',
@@ -8,94 +8,41 @@ import { UsuarioService } from './../usuario.service';
 })
 export class UsuarioFormComponent implements OnInit {
 
-  usuarios: any = [];
-  pokemons: any = [];
-  pokemonSelecionado : any;
+  usuarios : any = [];
+  employees: any = [];
   
-  employee: any = [];
 
-  offset: number = 0;
-  limit : number = 10;
+  textoBotao = "Meu Botão";
+  isHabilitado = true;
 
+  
   color = 'yellow';
-
-  textoBotao = 'Meu Botão';
-  isHabilitar = true;
-
-
-
-  constructor(private usuarioService: UsuarioService) {
-    this.usuarios = this.usuarioService.getAll();
-
-    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
-      (success) => {
-        console.log(success)
-        this.pokemons = success;
-      },
-      (error) => { console.log(error) }
-
-    );
-
-    this.usuarioService.getAllEmployees().subscribe(
-      (success) => {
-        console.log(success)
-        this.employee = success;
-      },
-      (error) => { console.log(error) }
-
-    );
-
-
-  }
-
-  SelecionarPokemon(url){
-     this.usuarioService.getOnePokemon(url).subscribe(
-      (success) => {
-        this.pokemonSelecionado = success;
-        console.log(this.pokemonSelecionado);
-      }
-     )
-  }
-
-  
-
-  proximaPagina() {
-    this.offset += 20;
-
-    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
-      (success) => {
-        console.log(success)
-        this.pokemons = success;
-      },
-      (error) => { console.log(error) }
-
-    );
-  }
-
-  trocarLimit(value){
-    this.limit = value;
-
-    this.usuarioService.getAllPokemons(this.offset,this.limit).subscribe(
-      (success) => {
-        console.log(success)
-        this.pokemons = success;
-      },
-      (error) => { console.log(error) }
-
-    );
     
-  }
-
-  habilitar() {
-   this.isHabilitar = !this.isHabilitar;
-   this.color = this.isHabilitar ? 'red' : 'pink';
-  }
-  
-  getColor(){
-    return this.color;
+  constructor(private usuarioService : UsuarioService) {   
+    //this.usuarioService = new UsuarioService();
+    this.usuarios = this.usuarioService.getAll();
+    
+    this.usuarioService.getAllEmployees().subscribe(
+      (qualquer_nome) => {
+        this.employees = qualquer_nome;
+      }
+    );
   }
 
   ngOnInit(): void {
+  }
+
+  
+  trocarHabilitado(){
+
+    this.isHabilitado = !this.isHabilitado;
+    //if ternário
+    this.color = this.isHabilitado == true ? 'red' : 'pink';
+    
+  }
+
+  getColor(){
+    return this.color;
   }
 
 }
