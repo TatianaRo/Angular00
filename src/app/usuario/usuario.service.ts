@@ -21,16 +21,9 @@ export class UsuarioService {
 
   }
 
-  getAllPokemons(offset,limit){
-    console.log(offset,limit);
-    return this.http.get('https://pokeapi.co/api/v2/pokemon-form?limit='+limit+'&offset='+ offset);
-  }
-
-  getAllEmployees(){
+   getAllEmployees(){
     return this.http.get('http://dummy.restapiexample.com/api/v1/employees');
   }
 
-  getOnePokemon(url){
-    return this.http.get(url);
-  }
+  
 }
