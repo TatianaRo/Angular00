@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -8,9 +8,38 @@ import { FormGroup } from '@angular/forms';
 })
 export class DataFormComponent implements OnInit {
   
- 
+  meuForm : FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder : FormBuilder) {
+    this.meuForm = this.formBuilder.group(
+      {
+        emailInput : ['',[Validators.required, Validators.email]],
+        senhaInput : ['',[ Validators.required ]]
+      }
+    );
+   }
+
+   onSubmit(){
+     console.log(this.meuForm);
+   }
+
+   getCampo(value){
+     //meuForm.controls.emailInput
+     return this.meuForm.get(value);
+    }
+   
+   isError(value){
+     let meuCampo= this.getCampo(value);
+     return (meuCampo.valid == false && meuCampo.touched == true);
+     //opcional: return (!meuCampo.valid && meuCampo.touched);
+
+        
+   }
+
+   isSuccess(value){
+    let meuCampo= this.getCampo(value);
+    return (meuCampo.valid == true && meuCampo.touched == true)
+  }  
 
   ngOnInit(): void {
   }

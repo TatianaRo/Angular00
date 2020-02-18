@@ -1,5 +1,5 @@
 import { SharedModule } from './../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ import { DataFormComponent } from './data-form/data-form.component';
     CommonModule,
     UsuarioRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
     
   ],

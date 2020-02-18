@@ -23,7 +23,7 @@ export class TemplateFormComponent implements OnInit {
     }
 
   isSuccess(campo){
-      return (campo.valid == false && campo.touched == true)
+      return (campo.valid == true && campo.touched == true)
     }  
 
 }
