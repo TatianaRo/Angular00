@@ -1,0 +1,53 @@
+<!-- pokemons -->
+
+<div class="float-right mt-4 mb-3">
+
+    <a class="btn btn-success"  [routerLink]= "['/usuarios/new']" >Novo Usuário</a>
+
+</div>
+
+<table class="table table-response table-dark mt-5">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Senha</th>
+            <!-- <th scope="col">Tipo de usuário</th> -->
+            <th scope="col">Cep</th>
+            <th scope="col">Logradouro</th>
+            <th scope="col">Numero</th>
+            <!-- <th scope="col">Complemento</th> -->
+            <th scope="col">Cidade</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Excluir</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of usuarios">
+
+            <td> {{ u.id }} </td>
+            <td> {{ u.nome }} </td>
+            <td> {{ u.email }}</td>
+            <td> {{ u.senha }} </td>
+            <td> {{ u.tipo_usuario }}</td>
+            <td> {{ u.cep }} </td>
+            <td> {{ u.logradouro }}</td>
+            <td> {{ u.numero }} </td>
+            <td> {{ u.complemento }}</td>
+            <td> {{ u.cidade }} </td>
+            <td> {{ u.bairro }}</td>
+            <td> {{ u.estado }} </td> 
+            <td>
+                <button class="btn btn-outline-secondary mr-2" (click)="deletarUsuario(u.id)">Deletar</button>
+                <button class="btn-danger mr-2" (click)="editarUsuario( u.id )">Alterar</button>
+            </td>           
+                    
+            
+
+        </tr>
+
+    </tbody>
+</table>
+

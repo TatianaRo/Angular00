@@ -8,23 +8,27 @@ import { GrifarParagrafoDirective } from './diretivas/grifar-paragrafo.directive
 import { DataPipe } from './pipes/data.pipe';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { DataFormComponent } from './data-form/data-form.component';
+import { CicloComponent } from './ciclo/ciclo.component';
+import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 
 @NgModule({
   declarations: [UsuarioFormComponent, 
     GrifarParagrafoDirective, 
-    DataPipe, TemplateFormComponent, DataFormComponent
+    DataPipe, TemplateFormComponent, DataFormComponent, CicloComponent, UsuarioListComponent
   ],
   imports: [
     CommonModule,
     UsuarioRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    
     
   ],
     exports: [
       UsuarioFormComponent,
+      
       
     ]
   
