@@ -2,7 +2,7 @@
 //var http = require('http');
 const util = require('util')
 var express = require('express');
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize'); //framework que pega um objeto e mapeia com uma tabela sql
 var bodyParser = require('body-parser');
 var cors = require('cors');
 

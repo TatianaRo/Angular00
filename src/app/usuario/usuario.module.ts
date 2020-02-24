@@ -15,7 +15,9 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 @NgModule({
   declarations: [UsuarioFormComponent, 
     GrifarParagrafoDirective, 
-    DataPipe, TemplateFormComponent, DataFormComponent, CicloComponent, UsuarioListComponent
+    DataPipe,
+     TemplateFormComponent,
+      DataFormComponent, CicloComponent, UsuarioListComponent
   ],
   imports: [
     CommonModule,

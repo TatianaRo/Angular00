@@ -1,0 +1,24 @@
+<h1 class="mt-4 text-center">Cadastro de Produtos</h1>
+
+<form class="mt-5" [formGroup]="cadastroProduto" (submit)="addProduto()">
+  <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="exampleFormControlInput1">Nome do Produto: </label>
+    <input type="text" class="form-control" placeholder="Escreva o nome" formControlName="nome">
+  </div>
+ 
+  <div class="form-group col-md-2 ">
+    <label for="exampleFormControlInput1">Valor: </label>
+    <input type="text" class="form-control" placeholder="Escreva o Valor" formControlName="preco">
+  </div>
+</div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Descrição</label>
+    <textarea class="form-control" placeholder="Descreva o produto" rows="3" formControlName="descricao">
+
+    </textarea>
+  </div>
+
+  <button type="submit" class="btn btn-block btn-primary">Submit</button>
+
+</form>

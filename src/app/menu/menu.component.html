@@ -7,6 +7,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']"  routerLinkActive="active" >Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']"  routerLinkActive="active" >Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
@@ -14,8 +17,12 @@
         </li>
        
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/usuarios']"  routerLinkActive="active">Produtos</a>
+          <a class="nav-link" [routerLink]="['/produtos']"  routerLinkActive="active">Produtos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/produtos/cadastro']"  routerLinkActive="active">Cadastro de Produtos</a>
+        </li>
+        
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/vendas']"  routerLinkActive="active">Vendas</a>
         </li>
@@ -23,12 +30,15 @@
             <a class="nav-link" [routerLink]="['/pokemons']"  routerLinkActive="active">Pokemons</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin']"  routerLinkActive="active">Admin</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" [routerLink]="['/usuarios/template-form']"  routerLinkActive="active">Template Form</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/usuarios/data-form']"  routerLinkActive="active">Data Form</a>
           </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
           </a>
@@ -38,14 +48,11 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
+        </li> -->
+        
+        </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)='logout()'>Logout</button>
       </form>
     </div>
   </nav>

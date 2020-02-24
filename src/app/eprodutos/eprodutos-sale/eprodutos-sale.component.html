@@ -1,0 +1,12 @@
+<div class="row">
+
+    <div *ngFor="let u of produtos" class="card ml-3 mt-3" style="width: 18rem;">
+        <img class="card-img-top" src="assets/cubo.jpg" alt="Card image cap"> 
+        <div class="card-body">
+            <h5  class="card-title">{{ u.nome }}</h5>
+            <p class="card-text">{{ u.descricao }}</p>
+            <h3 class="card-title"><p align="center">R$ {{ u.preco }}</p></h3>
+            <a class="btn btn-dark">Comprar</a> 
+        </div>
+    </div>
+</div>

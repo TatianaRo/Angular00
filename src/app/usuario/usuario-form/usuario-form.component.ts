@@ -1,5 +1,5 @@
 import { CepService } from './../../shared/services/cep.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -87,7 +87,7 @@ export class UsuarioFormComponent implements OnInit {
 
       this.addusuarios = this.formBuilder.group(
         {
-          nomeInput  : ['',[ ]],
+          nomeInput  : ['',[ Validators.required ]],
           senhaInput  : ['',[ ]],
           emailInput   : ['',[ ]],
           cepInput    : ['',[ ]],
@@ -187,11 +187,11 @@ onSubmit(){
   );
 
   }else{
-    this.usuarioService.updateUser (this.idUsuario, obj).subscribe(
+    this.usuarioService.updateUser(this.idUsuario, obj).subscribe(
       (response : any) =>
     { 
       console.log(response);
-      this.toastr.success('Usuário alterado com sucesso: '+ response.id);
+      this.toastr.success('Usuário alterado com sucesso');
       this.router.navigate(['/usuarios']);
       
       
