@@ -1,9 +1,10 @@
 import { CepService } from './../../shared/services/cep.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsuarioModel } from 'src/app/shared/models/usuario.model';
 
 @Component({
   selector: 'app-usuario-form',
@@ -13,6 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UsuarioFormComponent implements OnInit {
 
   usuarios : any = [];
+  usuario : UsuarioModel ;
+
   employees: any = [];
   
 
@@ -52,28 +55,27 @@ export class UsuarioFormComponent implements OnInit {
           this.titulo = "Formulário de cadastro";
 
           this.usuarioService.getOneUser( rota.id ).subscribe(
-            (success : any) => 
-            {
-              let obj = {
-                nomeInput : success.nome,
-                emailInput : success.email,
-                senhaInput : success.senha,
-                cepInput : success.cep,
-                cidadeInput : success.localidade,
-                logradouroInput : success.logradouro,
-                bairroInput : success.bairro,
-                estadoInput : success.uf,
-                numeroInput : success.numero,
-                complementoInput : success.complemento,
+            (success : UsuarioModel) => 
+            //Objeto foi substituido por usuario
+             {
+            //   let obj = {
+            //     nomeInput : success.nome,
+            //     emailInput : success.email,
+            //     senhaInput : success.senha,
+            //     cepInput : success.cep,
+            //     cidadeInput : success.localidade,
+            //     logradouroInput : success.logradouro,
+            //     bairroInput : success.bairro,
+            //     estadoInput : success.uf,
+            //     numeroInput : success.numero,
+            //     complementoInput : success.complemento,
                 
 
-              }
-              this.addusuarios.patchValue(obj);
+            //   }
+              this.usuario = success;
+              this.addusuarios.patchValue( { usuario : this.usuario } );
             }
-            ,(error) => 
-            {
-              
-            }
+            ,(error) => { }
           )}
         else{
           console.log('é criação')
@@ -85,26 +87,45 @@ export class UsuarioFormComponent implements OnInit {
 
       );
 
-      this.addusuarios = this.formBuilder.group(
-        {
-          nomeInput  : ['',[ Validators.required ]],
-          senhaInput  : ['',[ ]],
-          emailInput   : ['',[ ]],
-          cepInput    : ['',[ ]],
-          cidadeInput  : ['',[ ]], 
-          numeroInput   : ['',[ ]],
-          complementoInput  : ['',[ ]],
-          bairroInput   : ['',[ ]],
-          logradouroInput  : ['',[ ]],
-          estadoInput    : ['',[ ]]
-        }
-      );
+    //   this.addusuarios = this.formBuilder.group(
+    //     {
+    //       usuario : {
+    //       nome  : ['',[ Validators.required ]],
+    //       senha  : ['',[ ]],
+    //       email  : ['',[ ]],
+    //       cep   : ['',[ ]],
+    //       cidade : ['',[ ]], 
+    //       numero   : ['',[ ]],
+    //       complemento  : ['',[ ]],
+    //       bairro   : ['',[ ]],
+    //       logradouro  : ['',[ ]],
+    //       estado  : ['',[ ]]
+    //     }
+    // }
+     // );
+
+     this.addusuarios = new FormGroup({
+
+      usuario: new FormGroup({
+        nome: new FormControl(''),
+        senha: new FormControl(''),
+        email: new FormControl(''),
+        cep:new FormControl(''),
+        cidade: new FormControl(''),
+        numero: new FormControl(''),
+        complemento: new FormControl(''),
+        bairro : new FormControl(''),
+        logradouro: new FormControl(''),
+        estado: new FormControl('')
+      })
+    });
+
     
   }
 
   ngOnInit(): void {
     //this.usuarioService = new UsuarioService();
-    this.usuarios = this.usuarioService.getAll();
+    //this.usuarios = this.usuarioService.getAll();
     
     this.usuarioService.getAllEmployees().subscribe(
       (qualquer_nome) => {
@@ -127,20 +148,22 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   getEndereco(){
-    let cep = this.addusuarios.value.cepInput;
+    let cep = this.addusuarios.get('usuario.cep');
+    //let cep = this.addusuarios.value.cepInput;
     
-    this.cepService.getCep( cep ).subscribe(
+    this.cepService.getCep( cep.value ).subscribe(
       (response : any)=>{ 
         console.log(response) ;
-        this.addusuarios.patchValue(
-          {
-            cidadeInput : response.localidade,
-            logradouroInput : response.logradouro,
-            bairroInput : response.bairro,
-            estadoInput : response.uf,
+         
+        let obj = {
+          cidade: response.localidade,
+          logradouro: response.logradouro,
+          bairro: response.bairro,
+          estado: response.uf,
+          cep: response.cep
+        }
 
-          }
-          );
+        this.addusuarios.patchValue( { usuario : obj } );
       },
       (error) => {
         console. log (error);
@@ -153,26 +176,29 @@ export class UsuarioFormComponent implements OnInit {
   }
 
 onSubmit(){
+
+  this.usuario = Object.assign({}, this.addusuarios.value.usuario)
   console.log(this.addusuarios);
 
-  let obj = {
+  // O objeto pode ser descartado, pois o objeto usuario armazena já os valores
+  //let obj = {
 
-         nome : this.addusuarios.value.nomeInput,
-         email: this.addusuarios.value.emailInput,
-         senha : this.addusuarios.value.senhaInput,
-         tipo_usuario: 1,
-         cep : this.addusuarios.value.cepInput,
-         logradouro : this.addusuarios.value.logradouroInput,
-         numero :this.addusuarios.value.numeroInput,
-         complemento : this.addusuarios.value.complementoInput,
-         cidade: this.addusuarios.value.cidadeInput,
-         bairro: this.addusuarios.value.bairroInput,
-         estado: this.addusuarios.value.estadoInput
-  };
+  //        nome : this.addusuarios.value.nomeInput,
+  //        email: this.addusuarios.value.emailInput,
+  //        senha : this.addusuarios.value.senhaInput,
+  //        tipo_usuario: 1,
+  //        cep : this.addusuarios.value.cepInput,
+  //        logradouro : this.addusuarios.value.logradouroInput,
+  //        numero :this.addusuarios.value.numeroInput,
+  //        complemento : this.addusuarios.value.complementoInput,
+  //        cidade: this.addusuarios.value.cidadeInput,
+  //        bairro: this.addusuarios.value.bairroInput,
+  //        estado: this.addusuarios.value.estadoInput
+  // };
 
   if(this.isEdicao == false)
   {
-  this.usuarioService.createUsuario(obj).subscribe
+  this.usuarioService.createUsuario(this.usuario).subscribe
   (
     (response : any) =>
     { 
@@ -187,7 +213,7 @@ onSubmit(){
   );
 
   }else{
-    this.usuarioService.updateUser(this.idUsuario, obj).subscribe(
+    this.usuarioService.updateUser(this.idUsuario, this.usuario).subscribe(
       (response : any) =>
     { 
       console.log(response);

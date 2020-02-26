@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioModel } from 'src/app/shared/models/usuario.model';
 
 @Component({
   selector: 'app-usuario-list',
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UsuarioListComponent implements OnInit {
   
-  usuarios : any = [];
+  usuarios : UsuarioModel[] = [];
 
   constructor(private usuarioService : UsuarioService,
     private toastr : ToastrService,

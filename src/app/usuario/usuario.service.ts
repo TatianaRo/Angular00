@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UsuarioModel } from '../shared/models/usuario.model';
 
 
 @Injectable({
@@ -37,11 +38,11 @@ export class UsuarioService {
 
    getAllUsuarios(){
     console.log();
-    return this.http.get(this.url);
+    return this.http.get<UsuarioModel[]>(this.url);
   }
 
   getOneUser(id_user){
-    return this.http.get(this.url+id_user);
+    return this.http.get<UsuarioModel>(this.url+id_user);
   }
 
    deleteUsuario(id_user){
